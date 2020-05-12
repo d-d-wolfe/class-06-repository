@@ -2,6 +2,7 @@
 
 const express = require('express');
 const cors = require('cors');
+const superagent = require('superagent');
 require('dotenv').config();
 
 //App setup (define global variables and configure the server)
@@ -21,7 +22,7 @@ function Location(obj) {
 function Weather(obj) {
   this.forecast = obj.weather.description;
   this.time = obj.datetime;
-}
+};
 
 app.get('/location', (req, resp) =>{
   const dataFromLocation = require('./data/location.json');
@@ -34,7 +35,7 @@ app.get('/weather', (req, resp) => {
   const weatherInfo = require('./data/weather.json');
   const theForcast = [];
   let forcastStats = weatherInfo.data;
-  forcastStats.forEach(obj => {
+  forcastStats.map(obj => {
     let weatherResult = new Weather(obj);
     theForcast.push(weatherResult);
   });
