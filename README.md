@@ -52,6 +52,26 @@ Finish time: __6:10pm and 8:35pm___
 
 Actual time needed to complete: __45 min___
 
+Number and name of feature: __Use map__
+
+Estimate of time needed to complete: __5 min___
+
+Start time: __3:20 pm___
+
+Finish time: __3:22___
+
+Actual time needed to complete: __2 min___
+
+Number and name of feature: __Geocode feature__
+
+Estimate of time needed to complete: __1 hour___
+
+Start time: __3:40 pm___
+
+Finish time: __4:26 pm___
+
+Actual time needed to complete: __46 min___
+
 Number and name of feature: ________________________________
 
 Estimate of time needed to complete: _____

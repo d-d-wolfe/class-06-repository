@@ -6,17 +6,18 @@ const superagent = require('superagent');
 require('dotenv').config();
 
 //App setup (define global variables and configure the server)
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 const app = express();
 
 //configs
 app.use(cors()); //configures the app to talk to other local websites without blocking them
 
 function Location(obj) {
+  console.log(obj);
   this.search_query = obj.display_name;
   this.formatted_query = obj.display_name;
   this.latitude = obj.lat;
-  this.longitude = obj.long;
+  this.longitude = obj.lon;
 };
 
 function Weather(obj) {
@@ -24,12 +25,13 @@ function Weather(obj) {
   this.time = obj.datetime;
 };
 
-app.get('/location', (req, resp) =>{
-  const dataFromLocation = require('./data/location.json');
-  let currentLocation = new Location(dataFromLocation[0]);
+app.get('/location', getLocation);
+//, (req, resp) =>{
+  //const dataFromLocation = require('./data/location.json');
+  //let currentLocation = new Location(dataFromLocation[0]);
   //console.log(dataFromLocation[0]);
-  resp.send(currentLocation);
-});
+  //resp.send(currentLocation);
+//});
 
 app.get('/weather', (req, resp) => {
   const weatherInfo = require('./data/weather.json');
@@ -42,7 +44,26 @@ app.get('/weather', (req, resp) => {
   resp.send(theForcast);
 });
 
+function getLocation(request, response) {
+ // console.log(request, response);
+  const cityToBeSearched = request.query.city;
+  const urlOfApi = 'https://us1.locationiq.com/v1/search.php';
 
+  const queryParams = {
+    q: cityToBeSearched,
+    key: process.env.GEOCODE_API_KEY,
+    format: 'json'
+  };
+
+  superagent.get(urlOfApi)
+  .query(queryParams)
+  .then(resultFromLocationIQ => {
+    const newLocation = new Location(resultFromLocationIQ.body[0]);
+    console.log(newLocation);
+    response.send(newLocation);
+
+  })
+}
 
 
 
