@@ -13,7 +13,21 @@ app.use(cors()); //configures the app to talk to other local websites without bl
 
 
 
+app.get('/location', (req, resp) =>{
+  const dataFromLocation = require('./data/location.json');
+  let currentLocation = new Location(dataFromLocation[0]);
+  //console.log(dataFromLocation[0]);
+  resp.send(currentLocation);
 
+});
+
+
+function Location(obj) {
+  this.search_query = obj.display_name;
+  this.formatted_query = obj.display_name;
+  this.latitude = obj.lat;
+  this.longitude = obj.long;
+};
 
 
 
