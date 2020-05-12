@@ -32,6 +32,26 @@ Finish time: __4:30pm___
 
 Actual time needed to complete: __1.5 hours *due to nodemon issue*___
 
+Number and name of feature: __Location data__
+
+Estimate of time needed to complete: _1 hour____
+
+Start time: _4:30 pm____
+
+Finish time: __5:30 pm___
+
+Actual time needed to complete: __1 Hour___
+
+Number and name of feature: __Forecast__
+
+Estimate of time needed to complete: __1 hour___
+
+Start time: __5:45 pm and 8:15pm___
+
+Finish time: __6:10pm and 8:35pm___
+
+Actual time needed to complete: __45 min___
+
 Number and name of feature: ________________________________
 
 Estimate of time needed to complete: _____
