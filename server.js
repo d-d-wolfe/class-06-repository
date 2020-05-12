@@ -19,8 +19,8 @@ function Location(obj) {
 };
 
 function Weather(obj) {
-  this.forecast = obj.forcast;
-  this.time = obj.time;
+  this.forecast = obj.weather.description;
+  this.time = obj.datetime;
 }
 
 app.get('/location', (req, resp) =>{
@@ -31,11 +31,14 @@ app.get('/location', (req, resp) =>{
 });
 
 app.get('/weather', (req, resp) => {
-  const weatherInfo = require('.data/weather.json');
+  const weatherInfo = require('./data/weather.json');
   const theForcast = [];
-  
-  let weatherResult = new Weather(obj);
-
+  let forcastStats = weatherInfo.data;
+  forcastStats.forEach(obj => {
+    let weatherResult = new Weather(obj);
+    theForcast.push(weatherResult);
+  });
+  resp.send(theForcast);
 });
 
 

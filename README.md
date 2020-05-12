@@ -46,11 +46,11 @@ Number and name of feature: __Forecast__
 
 Estimate of time needed to complete: __1 hour___
 
-Start time: __5:45 pm___
+Start time: __5:45 pm and 8:15pm___
 
-Finish time: _____
+Finish time: __6:10pm and 8:35pm___
 
-Actual time needed to complete: _____
+Actual time needed to complete: __45 min___
 
 Number and name of feature: ________________________________
 
