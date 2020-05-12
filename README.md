@@ -28,9 +28,9 @@ Estimate of time needed to complete: _45 mins____
 
 Start time: __3:05 pm__
 
-Finish time: _____
+Finish time: __4:30pm___
 
-Actual time needed to complete: _____
+Actual time needed to complete: __1.5 hours *due to nodemon issue*___
 
 Number and name of feature: ________________________________
 
