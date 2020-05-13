@@ -72,6 +72,26 @@ Finish time: __4:26 pm___
 
 Actual time needed to complete: __46 min___
 
+Number and name of feature: __Weather__
+
+Estimate of time needed to complete: __45 minutes___
+
+Start time: __4:50 pm___
+
+Finish time: __5:25 pm___
+
+Actual time needed to complete: __35 minutes___
+
+Number and name of feature: ________________________________
+
+Estimate of time needed to complete: _____
+
+Start time: _____
+
+Finish time: _____
+
+Actual time needed to complete: _____
+
 Number and name of feature: ________________________________
 
 Estimate of time needed to complete: _____
