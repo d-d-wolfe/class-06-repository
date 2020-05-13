@@ -26,35 +26,22 @@ function Weather(obj) {
 };
 
 function Trails(obj) {
-  this.name = 
-  this.lat =
-  this.lon =
-  this.maxDistance = 
-  this.minStars = 
-}
+  this.name = obj.name
+  this.location = obj.location 
+  this.length = obj.length
+  this.stars = obj.stars
+  this.starVotes = obj.starVotes
+  this.url = obj.url
+  this.conditions = obj.conditionDetails
+  this.dateTime = obj.conditionDate
+};
 
 app.get('/location', getLocation);
-//, (req, resp) =>{
-  //const dataFromLocation = require('./data/location.json');
-  //let currentLocation = new Location(dataFromLocation[0]);
-  //console.log(dataFromLocation[0]);
-  //resp.send(currentLocation);
-//});
-
 app.get('/weather', getWeather);
-//   const weatherInfo = require('./data/weather.json');
-//   const theForcast = [];
-//   let forcastStats = weatherInfo.data;
-//   forcastStats.map(obj => {
-//     let weatherResult = new Weather(obj);
-//     theForcast.push(weatherResult);
-//   });
-//   resp.send(theForcast);
-// });
+app.get('/trails', getTrails);
 
 function getLocation(request, response) {
- // console.log(request, response);
-  const cityToBeSearched = request.query.city;
+   const cityToBeSearched = request.query.city;
   const urlOfApi = 'https://us1.locationiq.com/v1/search.php';
 
   const queryParams = {
@@ -67,15 +54,12 @@ function getLocation(request, response) {
   .query(queryParams)
   .then(resultFromLocationIQ => {
     const newLocation = new Location(resultFromLocationIQ.body[0]);
-    //console.log(newLocation);
     response.send(newLocation);
-
   })
-}
+};
 
 function getWeather(request, response) {
-  // console.log(request, response);
-   const weatherResult = request.query.weather;
+  const weatherResult = request.query.weather;
    const urlOfApi = 'https://api.weatherbit.io/v2.0/forecast/daily';
  
    const weatherParams = {
@@ -98,11 +82,41 @@ function getWeather(request, response) {
     })
      //console.log(result);
      response.send(result);
- 
    });
  };
 
+ function getTrails(request, response) {
+   const trailsResult = request.query.trails;
+   const urlOfApi = 'https://www.hikingproject.com/data/get-trails';
 
+   const trailsParams = {
+    lat: request.query.latitude,
+    lon: request.query.longitude,
+    key: process.env.TRAILS_API_KEY,
+    format: 'json'
+  };
+
+    const trailsInfo = [];
+
+    superagent.get(urlOfApi)
+   .query(trailsParams)
+   .then(resultFromHiking => {
+     //console.log('result from hiking', resultFromHiking);
+    let hikingStats = resultFromHiking.body.trails;
+    console.log('hiking stats', hikingStats);
+    let result = hikingStats.map(obj => {
+     const hikingInfo = new Trails(obj);
+     console.log('hiking info',  hikingInfo);
+     return hikingInfo;
+    });
+     console.log(result);
+     response.send(result);
+   })
+   .catch(error => {
+     console.log(error);
+     response.send(error).status(500);
+   });
+   };
 
 
 
