@@ -3,6 +3,7 @@
 const express = require('express');
 const cors = require('cors');
 const superagent = require('superagent');
+const pg = require('pg');
 require('dotenv').config();
 
 //App setup (define global variables and configure the server)
@@ -11,6 +12,7 @@ const app = express();
 
 //configs
 app.use(cors()); //configures the app to talk to other local websites without blocking them
+const client = new pg.Client(process.env.DATABASE_URL);
 
 function Location(obj) {
   console.log(obj);

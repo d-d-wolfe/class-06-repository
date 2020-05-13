@@ -82,7 +82,7 @@ Finish time: __5:25 pm___
 
 Actual time needed to complete: __35 minutes___
 
-Number and name of feature: __Trails______________________________
+Number and name of feature: __Trails__
 
 Estimate of time needed to complete: __1 hour___
 
@@ -91,6 +91,26 @@ Start time: __5:30 pm and 8:00 pm___
 Finish time: __5:50 pm and 8:50 pm___
 
 Actual time needed to complete: __1 hour 10 minutes___
+
+Number and name of feature: __Database__
+
+Estimate of time needed to complete: __1 hour___
+
+Start time: __2:55 pm___
+
+Finish time: __3:50 pm___
+
+Actual time needed to complete: __55 mins___
+
+Number and name of feature: ________________________________
+
+Estimate of time needed to complete: _____
+
+Start time: _____
+
+Finish time: _____
+
+Actual time needed to complete: _____
 
 Number and name of feature: ________________________________
 
