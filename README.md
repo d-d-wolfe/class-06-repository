@@ -86,7 +86,7 @@ Number and name of feature: __Trails______________________________
 
 Estimate of time needed to complete: __1 hour___
 
-Start time: __5:30 pm___
+Start time: __5:30 pm and ___
 
 Finish time: _____
 
