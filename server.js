@@ -25,6 +25,14 @@ function Weather(obj) {
   this.time = obj.datetime;
 };
 
+function Trails(obj) {
+  this.name = 
+  this.lat =
+  this.lon =
+  this.maxDistance = 
+  this.minStars = 
+}
+
 app.get('/location', getLocation);
 //, (req, resp) =>{
   //const dataFromLocation = require('./data/location.json');
