@@ -82,11 +82,11 @@ Finish time: __5:25 pm___
 
 Actual time needed to complete: __35 minutes___
 
-Number and name of feature: ________________________________
+Number and name of feature: __Trails______________________________
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: __1 hour___
 
-Start time: _____
+Start time: __5:30 pm___
 
 Finish time: _____
 
