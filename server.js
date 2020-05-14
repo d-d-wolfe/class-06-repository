@@ -30,14 +30,24 @@ function Weather(obj) {
 };
 
 function Trails(obj) {
-  this.name = obj.name
-  this.location = obj.location 
-  this.length = obj.length
-  this.stars = obj.stars
-  this.starVotes = obj.starVotes
-  this.url = obj.url
-  this.conditions = obj.conditionDetails
-  this.dateTime = obj.conditionDate
+  this.name = obj.name;
+  this.location = obj.location; 
+  this.length = obj.length;
+  this.stars = obj.stars;
+  this.starVotes = obj.starVotes;
+  this.url = obj.url;
+  this.conditions = obj.conditionDetails;
+  this.dateTime = obj.conditionDate;
+};
+
+function Movies(obj) {
+  this.title = obj.title;
+  this.overview = obj.overview;
+  this.averageVotes = obj.vote_average;
+  this.totalVotes = obj.vote_count;
+  this.image = 'https://image.tmdb.org/t/p/w500' + obj.poster_path;
+  this.popularity = obj.popularity;
+  this.released_on = obj.release_date;
 };
 
 app.get('/', (req, res) => {
@@ -47,6 +57,7 @@ app.get('/', (req, res) => {
 app.get('/location', getLocation);
 app.get('/weather', getWeather);
 app.get('/trails', getTrails);
+app.get('/movies', getMovies);
 
 
 
@@ -134,7 +145,6 @@ function getWeather(request, response) {
     console.log('hiking stats', hikingStats);
     let result = hikingStats.map(obj => {
      const hikingInfo = new Trails(obj);
-     console.log('hiking info',  hikingInfo);
      return hikingInfo;
     });
      console.log(result);
@@ -146,7 +156,31 @@ function getWeather(request, response) {
    });
    };
 
+function getMovies(req, resp) {
+  const urlOfApi = 'https://api.themoviedb.org/3/search/movie';
 
+  const movieParams = {
+    api_key: process.env.MOVIE_API_KEY,
+    query: req.query.search_query 
+  };
+  superagent.get(urlOfApi)
+  .query(movieParams)
+  .then(resultFromMovies => {
+    //console.log('result from hiking', resultFromHiking);
+   let movieStats = resultFromMovies.body.results;
+   //console.log('hiking stats', hikingStats);
+   let result = movieStats.map(obj => {
+    const movieInfo = new Movies(obj);
+    return movieInfo;
+   });
+    console.log(result);
+    resp.send(result);
+  })
+  .catch(error => {
+    console.log(error);
+    response.send(error).status(500);
+  });
+};
 
 
 

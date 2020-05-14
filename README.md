@@ -112,6 +112,28 @@ Finish time: _5:00 pm__
 
 Actual time needed to complete: __55 mins___
 
+Number and name of feature: __Movies__
+
+Estimate of time needed to complete: _1 hour____
+
+Start time: __3:15 pm___
+
+Finish time: __4:30 pm___
+
+Actual time needed to complete: __1 hour 15 min___
+
+
+Number and name of feature: ________________________________
+
+Estimate of time needed to complete: _____
+
+Start time: _____
+
+Finish time: _____
+
+Actual time needed to complete: _____
+
+
 Number and name of feature: ________________________________
 
 Estimate of time needed to complete: _____
