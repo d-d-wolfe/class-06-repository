@@ -40,9 +40,15 @@ function Trails(obj) {
   this.dateTime = obj.conditionDate
 };
 
+app.get('/', (req, res) => {
+  res.redirect('https://codefellows.github.io/code-301-guide/curriculum/city-explorer-app/front-end/');
+});
+
 app.get('/location', getLocation);
 app.get('/weather', getWeather);
 app.get('/trails', getTrails);
+
+
 
 function getLocation(request, response) {
    const cityToBeSearched = request.query.city;
