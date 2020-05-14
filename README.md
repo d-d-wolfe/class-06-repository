@@ -102,15 +102,15 @@ Finish time: __3:50 pm___
 
 Actual time needed to complete: __55 mins___
 
-Number and name of feature: ________________________________
+Number and name of feature: __Server search__
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: __1 hour___
 
-Start time: _____
+Start time: __4:05 pm___
 
-Finish time: _____
+Finish time: _5:00 pm__
 
-Actual time needed to complete: _____
+Actual time needed to complete: __55 mins___
 
 Number and name of feature: ________________________________
 

@@ -13,10 +13,12 @@ const app = express();
 //configs
 app.use(cors()); //configures the app to talk to other local websites without blocking them
 const client = new pg.Client(process.env.DATABASE_URL);
+client.on('error', console.error);
+client.connect();
 
-function Location(obj) {
+function Location(obj, search_query) {
   console.log(obj);
-  this.search_query = obj.display_name;
+  this.search_query = search_query;
   this.formatted_query = obj.display_name;
   this.latitude = obj.lat;
   this.longitude = obj.lon;
@@ -52,12 +54,30 @@ function getLocation(request, response) {
     format: 'json'
   };
 
-  superagent.get(urlOfApi)
-  .query(queryParams)
-  .then(resultFromLocationIQ => {
-    const newLocation = new Location(resultFromLocationIQ.body[0]);
+  // if the data is in the database, use it instead
+  const sqlQuery = 'SELECT * FROM city_info WHERE search_query=$1';
+  const sqlValues = [cityToBeSearched];
+  client.query(sqlQuery, sqlValues)
+    .then(resultFromSql => {
+
+      if(resultFromSql.rowCount > 0) {
+        response.send(resultFromSql.rows[0]);
+      } else {
+        superagent.get(urlOfApi)
+          .query(queryParams)
+          .then(resultFromLocationIQ => {
+            const newLocation = new Location(resultFromLocationIQ.body[0], cityToBeSearched);
+
+            const sqlQuery = 'INSERT INTO city_info (search_query, formatted_query, latitude, longitude) VALUES ($1, $2, $3, $4)';
+
+            const valueArray = [newLocation.search_query, newLocation.formatted_query, newLocation.latitude, newLocation.longitude];
+
+            client.query(sqlQuery, valueArray);
+
     response.send(newLocation);
-  })
+  });
+  }
+    });
 };
 
 function getWeather(request, response) {
