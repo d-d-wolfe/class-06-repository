@@ -134,12 +134,12 @@ Finish time: __5:45 pm___
 Actual time needed to complete: __1 hour___
 
 
-Number and name of feature: ________________________________
+Number and name of feature: __Refactoring__
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: __1.5 hours___
 
-Start time: _____
+Start time: __8:15 pm___
 
-Finish time: _____
+Finish time: __9:20 pm___
 
-Actual time needed to complete: _____
+Actual time needed to complete: _1 hour 5 mins____
