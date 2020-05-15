@@ -17,7 +17,7 @@ client.on('error', console.error);
 client.connect();
 
 function Location(obj, search_query) {
-  console.log(obj);
+  //console.log(obj);
   this.search_query = search_query;
   this.formatted_query = obj.display_name;
   this.latitude = obj.lat;
@@ -50,6 +50,14 @@ function Movies(obj) {
   this.released_on = obj.release_date;
 };
 
+function Restaurant(obj) {
+  this.name = obj.name,
+  this.image_url = obj.image_url,
+  this.price = obj.price,
+  this.rating = obj.rating,
+  this.url = obj.url
+};
+
 app.get('/', (req, res) => {
   res.redirect('https://codefellows.github.io/code-301-guide/curriculum/city-explorer-app/front-end/');
 });
@@ -58,6 +66,7 @@ app.get('/location', getLocation);
 app.get('/weather', getWeather);
 app.get('/trails', getTrails);
 app.get('/movies', getMovies);
+app.get('/yelp', getRestaurants);
 
 
 
@@ -142,12 +151,12 @@ function getWeather(request, response) {
    .then(resultFromHiking => {
      //console.log('result from hiking', resultFromHiking);
     let hikingStats = resultFromHiking.body.trails;
-    console.log('hiking stats', hikingStats);
+    //console.log('hiking stats', hikingStats);
     let result = hikingStats.map(obj => {
      const hikingInfo = new Trails(obj);
      return hikingInfo;
     });
-     console.log(result);
+     //console.log(result);
      response.send(result);
    })
    .catch(error => {
@@ -173,7 +182,7 @@ function getMovies(req, resp) {
     const movieInfo = new Movies(obj);
     return movieInfo;
    });
-    console.log(result);
+    //console.log(result);
     resp.send(result);
   })
   .catch(error => {
@@ -182,6 +191,33 @@ function getMovies(req, resp) {
   });
 };
 
+function getRestaurants(req, resp) {
+  const urlOfApi = 'https://api.yelp.com/v3/businesses/search';
+  const yelpQuery = req.query.search_query;
+
+  const restaurantParams = {
+    location: yelpQuery,
+  }
+
+  superagent.get(urlOfApi)
+  .set('Authorization', `Bearer ${process.env.YELP_API_KEY}`)
+  .query(restaurantParams)
+  .then(resultFromRestaurants => {
+    //console.log('result from hiking', resultFromHiking);
+   let restaurantStats = resultFromRestaurants.body.businesses;
+   console.log('restaurant stats', restaurantStats);
+   let result = restaurantStats.map(obj => {
+    const restaurantInfo = new Restaurant(obj);
+    return restaurantInfo;
+   });
+    //console.log(result);
+    resp.send(result);
+  })
+  .catch(error => {
+    console.log(error);
+    response.send(error).status(500);
+  });
+};
 
 
 app.listen(PORT, console.log(`we are up on ${PORT}`));
